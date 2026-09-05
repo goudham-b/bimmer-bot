@@ -1,0 +1,79 @@
+/* Container for the autocomplete input */
+.autocomplete-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 32px;
+}
+
+/* Input styling */
+.autocomplete-input {
+    outline: none;
+    border: none;
+    background: transparent;
+    /* padding: 10px; */
+    width: 100%;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Dropdown list styling */
+.autocomplete-dropdown {
+    position: absolute;
+    top: 40px;
+    /* Adjust based on the input height */
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border: 1px solid #434343;
+    background-color: #2f2f2f;
+    border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5),
+        0 5px 10px rgba(0, 0, 0, 0.3),
+        0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    max-width: 100%;
+}
+
+/* List item styling */
+.autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #e2e2e2;
+    transition: background-color 0.15s ease;
+}
+
+.autocomplete-item:hover {
+    background-color: #363636;
+}
+
+.autocomplete-item:hover.ac-highlighted {
+    background-color: #424242;
+}
+
+/* Optional: Add active or selected item highlighting */
+.autocomplete-item:active,
+.ac-highlighted {
+    background-color: #404040;
+}
+
+.ac-action-btn {
+    padding: 0px;
+    font-size: 12px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 24px;
+    min-width: 24px;
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+}

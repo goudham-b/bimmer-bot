@@ -1,20 +1,23 @@
 [project]
 name = "api"
 version = "0.1.0"
-description = "Add your description here"
+description = "Bimmer backend"
 readme = "README.md"
-authors = [
-    { name = "goudham", email = "goudhamb@gmail.com" }
-]
-requires-python = ">=3.13"
+authors = []
+requires-python = ">=3.13,<3.14"
 dependencies = [
-    "fastapi>=0.141.1",
-    "uvicorn[standard]>=0.52.4",
+    "accelerate>=1.14.0",
+    "dotenv>=0.9.9",
+    "fastapi>=0.141.1,<1.0",
+    "huggingface-hub>=1.30.0",
+    "numpy>=2.5.2",
+    "safetensors>=0.8.0",
+    "torch>=2.14.0,<3.0",
+    "transformers>=5.16.1",
+    "uvicorn[standard]>=0.52.4,<1.0",
 ]
 
-[project.scripts]
-api = "api:main"
-
-[build-system]
-requires = ["uv_build>=0.12.5,<0.13.0"]
-build-backend = "uv_build"
+[dependency-groups]
+dev = [
+    "httpx>=0.28,<1.0",
+]

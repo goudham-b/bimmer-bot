@@ -1,0 +1,32 @@
+.remove-btn {
+    background: #463434;
+    color: #d5d5d5;
+    border: 1px solid #5c4545;
+    /* border-left: 0px; */
+}
+
+.remove-btn:hover {
+    background: #544141;
+    cursor: pointer;
+}
+
+.add-btn {
+    background: #3c4634;
+    color: #d5d5d5;
+    border: 1px solid #525c34;
+    /* border-left: 0px; */
+}
+
+.add-btn:hover {
+    background: #495434;
+    cursor: pointer;
+}
+
+.active-text {
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 14px;
+    margin-right: 4px;
+}

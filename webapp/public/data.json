@@ -1,0 +1,16 @@
+{
+    "Name": {
+        "function": [
+            "equals to",
+            "in"
+        ],
+        "value": []
+    },
+    "Age": {
+        "function": [
+            "=",
+            ">",
+            "<"
+        ]
+    }
+}
