@@ -26,6 +26,9 @@
   color: #cedae5;
 }
 
+.message-content {
+  white-space: pre-line;
+}
 
 
 .message-label {

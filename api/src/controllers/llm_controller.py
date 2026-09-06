@@ -1,9 +1,37 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+import asyncio
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Body
 from services.llm_service import LLMService
+from services.parts_service import PartsService
+
 
 router = APIRouter(prefix="/chat")
 
 llm = LLMService()
+parts_service = PartsService(llm_service=llm)
+
+
+
+@router.post("/separator")
+async def get_separator(request: dict = Body(...)):
+    sample = request.get("sample")
+    if not sample:
+        return {
+            "success": False,
+            "message": "Invalid sample"
+        }
+    print(request)
+    separator = llm.find_separator(sample)
+
+    if separator:
+        return {
+            "success": True,
+            "separator": separator
+        }
+    else:
+        return {
+            "success": False,
+            "separator": separator
+        }
 
 @router.websocket("/message")
 async def chat(websocket: WebSocket):
@@ -58,18 +86,65 @@ async def chat(websocket: WebSocket):
 
             # Stream LLM response
             try:
+                original_query = request.get("message", "")
 
-                for chunk in llm.stream_generate(request):
+                category = llm.classify(
+                    original_query
+                ).strip().lower()
+
+                print(f"category: {category}")
+
+                if category == "task":
+
+                    # Run task
+                    task_result = await asyncio.to_thread(
+                        parts_service.analyse
+                    )
+
+                    # # Feed task result back to chatbot
+                    # chat_request = {
+                    #     "message": original_query,
+                    #     "history": [
+                    #         {
+                    #             "role": "user",
+                    #             "message": original_query
+                    #         },
+                    #         {
+                    #             "role": "assistant",
+                    #             "message": task_result
+                    #         }
+                    #     ]
+                    # }
+                    
+
+                    # # Generate final chatbot response
+                    # for chunk in llm.stream_generate(chat_request):
+                    #     await websocket.send_json({
+                    #         "type": "token",
+                    #         "content": chunk
+                    #     })
+                    # await websocket.send_json({
+                    #     "type": "done"
+                    # })
 
                     await websocket.send_json({
-                        "type": "token",
-                        "content": chunk
+                        "type": "task_result",
+                        "content": task_result
                     })
 
-                # Tell frontend response is complete
-                await websocket.send_json({
-                    "type": "done"
-                })
+                    await websocket.send_json({
+                        "type": "done"
+                    })
+
+                else:
+                    for chunk in llm.stream_generate(request):
+                        await websocket.send_json({
+                            "type": "token",
+                            "content": chunk
+                        })
+                    await websocket.send_json({
+                        "type": "done"
+                    })
 
             except Exception as e:
 

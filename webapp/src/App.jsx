@@ -53,7 +53,7 @@ function App() {
           setMessages([
             {
               type: "system",
-              content: "Connection established ;)"
+              content: "Connection established ;)\n\nSample queries:\n1. \"Explain bmw m series.\"\n2. \"Analyse parts.csv\"\n\n"
             },
             {
               type: "assistant",
@@ -98,6 +98,34 @@ function App() {
               content: data.content
             });
 
+            return updated;
+          });
+
+          return;
+        }
+
+        if (data.type === "task_result") {
+          setProcessing(false);
+
+          setMessages((previous) => {
+            const updated = [...previous];
+
+            const lastIndex = updated.length - 1;
+
+            if (
+              updated[lastIndex]?.type === "system" &&
+              updated[lastIndex]?.content === "Thinking"
+            ) {
+              updated.pop();
+            }
+
+            updated.push({
+              type: "assistant",
+              content:
+                typeof data.content === "string"
+                  ? data.content
+                  : JSON.stringify(data.content, null, 2)
+            });
             return updated;
           });
 
@@ -156,7 +184,7 @@ function App() {
         ...previous,
         {
           type: "system",
-          content: "Connection failed :/"
+          content: "Connection failed :/\nPlease refresh the page."
         }
       ]);
     };
