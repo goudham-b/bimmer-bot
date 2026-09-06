@@ -114,12 +114,12 @@ class LLMService:
         thread.start()
         char_count = 0
         for text in streamer:
-            remaining = MAX_REPLY_CHAR - char_count
+            # remaining = MAX_REPLY_CHAR - char_count
 
-            if remaining <= 0:
-                break
+            # if remaining <= 0:
+            #     break
 
-            text = text[:remaining]
-            char_count += len(text)
+            # text = text[:remaining]
+            # char_count += len(text)
 
             yield text
