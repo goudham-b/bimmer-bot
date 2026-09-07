@@ -39,7 +39,7 @@ Refer screenshots folder:
   - Code will automatically detect GPU using torch package and LLM model will be powered by GPU.
   - Created frontend and backend service to give complete experience of the chatbot.
   - I simulated agentic approach by using LLM as query classifier.
-  - When user asks query related to BMW or cars it will classify them and redirect to chat bot, if query is related to task 3 that analysing Parts.csv then it will classify it as "task" and call the service that analyse and summarize the Parts.csv
+  - When user asks query related to BMW or cars it will classify them and redirect to chat bot, if query is related to task 3 that analysing Parts.csv then it will classify it as "task" and call the service to analyse and summarize the Parts.csv
 
 TASK 3: 
  - I have integrated task 3 as a service in the chat bot which will automatically classify user query and redirect to right agent.
@@ -52,5 +52,5 @@ TASK 3:
 KNOWN ISSUES & IMPROVEMENTS:
  - Running on docker giving response as full string instead of streaming word by word.
  - Socket connection can be handled in a better way.
- - TASK 3 reponse can be fed to chat bot to it is opinion.
+ - TASK 3 reponse can be fed to chat bot to give its opinion.
  - Chat history is not implemented fully.
