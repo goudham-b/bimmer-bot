@@ -34,5 +34,4 @@ Refer screenshots folder:
 KNOWN ISSUES & IMPROVEMENTS:
  - Running on docker giving response as full string instead of streaming word by word.
  - Socket connection can be handled in a better way.
- - TASK 3 reponse can be fed to chat bot to give its opinion.
  - Chat history is not implemented fully.
