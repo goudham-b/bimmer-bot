@@ -30,24 +30,6 @@ Refer screenshots folder:
 
 ![Backend processing logs](screenshots/backend_log.png)
 
-![Task 3 Dataset analysis](screenshots/task_3.png)
-
-![Task 3 result](screenshots/task_3_res.png)
-
- TASK 1:
-  - I have used small scale model to work effectively on my CPU.
-  - Code will automatically detect GPU using torch package and LLM model will be powered by GPU.
-  - Created frontend and backend service to give complete experience of the chatbot.
-  - I simulated agentic approach by using LLM as query classifier.
-  - When user asks query related to BMW or cars it will classify them and redirect to chat bot, if query is related to task 3 that analysing Parts.csv then it will classify it as "task" and call the service to analyse and summarize the Parts.csv
-
-TASK 3: 
- - I have integrated task 3 as a service in the chat bot which will automatically classify user query and redirect to right agent.
- - For quick reference visit `others` folder.
- - I used LLM to analyze and find the separator with sample data.
- - Validated dataset using the LLM provided separator to agree with the separator.
- - Used `pandas` dataframe for understanding description column.
- - I didn't proceed further as it requires more to ML knowledge. 
 
 KNOWN ISSUES & IMPROVEMENTS:
  - Running on docker giving response as full string instead of streaming word by word.
